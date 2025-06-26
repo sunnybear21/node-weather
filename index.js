@@ -2,10 +2,12 @@
 const express = require('express');
 const axios = require('axios');
 const app = express();
-const PORT = 3000;
+
+// Render가 제공하는 포트를 자동으로 사용
+const PORT = process.env.PORT || 3000;
 
 // 👉 여기에 본인의 OpenWeatherMap API 키 입력
-const API_KEY =process.env.OPENWEATHER_API;
+const API_KEY = process.env.OPENWEATHER_API;
 
 app.get('/weather', async (req, res) => {
   const { lat, lon } = req.query;
@@ -24,5 +26,5 @@ app.get('/weather', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`🌦 날씨 서버가 http://localhost:${PORT} 에서 실행 중`);
+  console.log(`🌦 날씨 서버가 포트 ${PORT}에서 실행 중`);
 });
